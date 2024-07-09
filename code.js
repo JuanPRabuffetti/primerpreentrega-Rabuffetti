@@ -1,35 +1,30 @@
+let tasasDeCambio = [
+    { de: 'USD', a: 'EUR', tasa: 0.85 },
+    { de: 'USD', a: 'GBP', tasa: 0.75 },
+    { de: 'USD', a: 'JPY', tasa: 110 },
+    { de: 'EUR', a: 'USD', tasa: 1.18 },
+    { de: 'EUR', a: 'GBP', tasa: 0.88 },
+    { de: 'EUR', a: 'JPY', tasa: 129 },
+    { de: 'GBP', a: 'USD', tasa: 1.33 },
+    { de: 'GBP', a: 'EUR', tasa: 1.14 },
+    { de: 'GBP', a: 'JPY', tasa: 147 },
+    { de: 'JPY', a: 'USD', tasa: 0.0091 },
+    { de: 'JPY', a: 'EUR', tasa: 0.0078 },
+    { de: 'JPY', a: 'GBP', tasa: 0.0068 }
+];
+
+let historial = [];
+
 function obtenerTasaDeCambio(deMoneda, aMoneda) {
-    switch (deMoneda) {
-        case "USD":
-            switch (aMoneda) {
-                case "EUR": return 0.85;
-                case "GBP": return 0.75;
-                case "JPY": return 110;
-            }
-            break;
-        case "EUR":
-            switch (aMoneda) {
-                case "USD": return 1.18;
-                case "GBP": return 0.88;
-                case "JPY": return 129;
-            }
-            break;
-        case "GBP":
-            switch (aMoneda) {
-                case "USD": return 1.33;
-                case "EUR": return 1.14;
-                case "JPY": return 147;
-            }
-            break;
-        case "JPY":
-            switch (aMoneda) {
-                case "USD": return 0.0091;
-                case "EUR": return 0.0078;
-                case "GBP": return 0.0068;
-            }
-            break;
-    }
-    return null; 
+    let tasa = tasasDeCambio.find(tc => tc.de === deMoneda && tc.a === aMoneda);
+    return tasa ? tasa.tasa : null;
+}
+
+function mostrarHistorial() {
+    console.log("Historial de Conversiones:");
+    historial.forEach((conversion, index) => {
+        console.log(`${index + 1}. ${conversion.cantidad} ${conversion.deMoneda} es igual a ${conversion.resultado.toFixed(2)} ${conversion.aMoneda}`);
+    });
 }
 
 function conversorDeDivisas() {
@@ -53,6 +48,10 @@ function conversorDeDivisas() {
 
         let resultado = cantidad * tasa;
         alert(`${cantidad} ${deMoneda} es igual a ${resultado.toFixed(2)} ${aMoneda}.`);
+
+        historial.push({ cantidad, deMoneda, aMoneda, resultado });
+
+        mostrarHistorial();
 
         continuarConvirtiendo = confirm("¿Desea realizar otra conversión?");
     }
