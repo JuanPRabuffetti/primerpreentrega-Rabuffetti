@@ -32,11 +32,6 @@ function conversorDeDivisas() {
 
     while (continuarConvirtiendo) {
         let cantidad = parseFloat(prompt("Ingrese la cantidad de dinero que desea convertir:"));
-        if (isNaN(cantidad) || cantidad <= 0) {
-            alert("Por favor, ingrese una cantidad válida.");
-            continue;
-        }
-
         let deMoneda = prompt("Ingrese la moneda de origen (USD, EUR, GBP, JPY):").toUpperCase();
         let aMoneda = prompt("Ingrese la moneda de destino (USD, EUR, GBP, JPY):").toUpperCase();
 
@@ -51,6 +46,8 @@ function conversorDeDivisas() {
 
         historial.push({ cantidad, deMoneda, aMoneda, resultado });
 
+        // Mostrar el historial en la consola
+        console.clear();  // Esto limpiará la consola antes de mostrar el nuevo historial
         mostrarHistorial();
 
         continuarConvirtiendo = confirm("¿Desea realizar otra conversión?");
