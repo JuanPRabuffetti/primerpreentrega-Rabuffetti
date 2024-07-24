@@ -7,6 +7,36 @@
     <script src="code.js"></script>
 </head>
 <body>
-    
+    <h1>Conversor de Divisas</h1>
+    <div class="conversion-form">
+        <label for="cantidad">Cantidad: </label>
+        <input type="number" id="cantidad" step="0.01"><br><br>
+
+        <label for="deMoneda">De: </label>
+        <select id="deMoneda">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="JPY">JPY</option>
+        </select><br><br>
+
+        <label for="aMoneda">A: </label>
+        <select id="aMoneda">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="JPY">JPY</option>
+        </select><br><br>
+
+        <button id="convertir">Convertir</button>
+    </div>
+
+    <div id="resultado"></div>
+
+    <div class="historial">
+        <h2>Historial de Conversiones</h2>
+        <ul id="historial"></ul>
+    </div>
+
 </body>
 </html>
